@@ -13,13 +13,12 @@ const winCombos = [
   [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
   [0, 4, 8], [2, 4, 6],            // diagonals
 ];
-const soundToggle = document.getElementById("sound-toggle");
-
-function setMuteState(mute) {
-  bgMusic.muted = mute;
-  moveSound.muted = mute;
-  winSound.muted = mute;
-  drawSound.muted = mute;
+soundToggle.addEventListener("click", () => {
+  const mute = !bgMusic.muted;
+  setMuteState(mute);
+  soundToggle.textContent = mute ? "Unmute Sound" : "Mute Sound";
+  soundToggle.classList.toggle("muted", mute);
+});
 }
 
 soundToggle.addEventListener("click", () => {
