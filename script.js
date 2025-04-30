@@ -1,6 +1,6 @@
-const board = document.getElementById('board');
-const status = document.getElementById('status');
-const resetButton = document.getElementById('reset');
+const buttons = document.querySelectorAll('.grid-button');
+const statusText = document.getElementById('status');
+const resetButton = document.getElementById('reset-button');
 
 // Sound effects
 const sounds = {
@@ -29,28 +29,13 @@ const winningConditions = [
   [2, 4, 6]
 ];
 
-// Create game board
-function createBoard() {
-  board.innerHTML = '';
-  gameState.forEach((cell, index) => {
-    const cellDiv = document.createElement('div');
-    cellDiv.classList.add('cell');
-    cellDiv.dataset.index = index;
-    cellDiv.addEventListener('click', handleCellClick);
-    board.appendChild(cellDiv);
-  });
-}
-
-// Handle cell click
-function handleCellClick(e) {
-  const cell = e.target;
-  const index = cell.dataset.index;
-
+// Handle move
+function handleMove(index) {
   if (gameState[index] !== '' || !gameActive) return;
 
   gameState[index] = currentPlayer;
-  cell.textContent = currentPlayer;
-  cell.classList.add('taken');
+  buttons[index].textContent = currentPlayer;
+  buttons[index].disabled = true;
   sounds.move.play();
 
   checkResult();
@@ -69,21 +54,21 @@ function checkResult() {
   }
 
   if (roundWon) {
-    status.textContent = `Player ${currentPlayer} wins!`;
+    statusText.textContent = `Player ${currentPlayer} wins!`;
     sounds.win.play();
     gameActive = false;
     return;
   }
 
   if (!gameState.includes('')) {
-    status.textContent = 'It\'s a draw!';
+    statusText.textContent = 'It\'s a draw!';
     sounds.draw.play();
     gameActive = false;
     return;
   }
 
   currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-  status.textContent = `Player ${currentPlayer}'s turn`;
+  statusText.textContent = `Player ${currentPlayer}'s Turn`;
 }
 
 // Reset game
@@ -91,8 +76,15 @@ resetButton.addEventListener('click', () => {
   gameState = ['', '', '', '', '', '', '', '', ''];
   currentPlayer = 'X';
   gameActive = true;
-  status.textContent = `Player ${currentPlayer}'s turn`;
-  createBoard();
+  statusText.textContent = `Player ${currentPlayer}'s Turn`;
+
+  buttons.forEach(button => {
+    button.textContent = '';
+    button.disabled = false;
+  });
 });
 
-createBoard();
+// Add event listeners to buttons
+buttons.forEach((button, index) => {
+  button.addEventListener('click', () => handleMove(index));
+});createBoard();
