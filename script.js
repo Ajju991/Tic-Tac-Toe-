@@ -1,3 +1,5 @@
+// script.js
+
 let currentPlayer = "X";
 let board = ["", "", "", "", "", "", "", "", ""];
 let gameActive = true;
@@ -12,43 +14,28 @@ const winCombos = [
   [0, 4, 8], [2, 4, 6],            // diagonals
 ];
 
-// Fetch DOM elements
-const soundToggle = document.getElementById("soundToggle");
-const boardContainer = document.getElementById("board-container");
-const bgMusic = document.getElementById("bg-music");
-const moveSound = document.getElementById("move-sound");
+const clickSound = document.getElementById("click-sound");
 const winSound = document.getElementById("win-sound");
 const drawSound = document.getElementById("draw-sound");
-const clickSound = document.getElementById("move-sound");
+const turnIndicator = document.getElementById("turn-indicator");
+const boardContainer = document.getElementById("board");
 
-bgMusic.volume = 0.2; // Adjust volume as needed
-
-soundToggle.addEventListener("click", () => {
-  const mute = !bgMusic.muted;
-  setMuteState(mute);
-  soundToggle.textContent = mute ? "Unmute Sound" : "Mute Sound";
-  soundToggle.classList.toggle("muted", mute);
-});
-
-// Add other game logic
-function setMuteState(mute) {
-  bgMusic.muted = mute;
-  moveSound.muted = mute;
-  winSound.muted = mute;
-  drawSound.muted = mute;
+function goToDeviceSelection() {
+  document.getElementById("start-screen").classList.add("hidden");
+  document.getElementById("device-screen").classList.remove("hidden");
 }
 
-function playMoveSound() {
-  moveSound.currentTime = 0;
-  moveSound.play();
+function selectDevice(selected) {
+  device = selected;
+  document.getElementById("device-screen").classList.add("hidden");
+  document.getElementById("mode-screen").classList.remove("hidden");
 }
 
-function playWinSound() {
-  winSound.play();
-}
-
-function playDrawSound() {
-  drawSound.play();
+function selectMode(selectedMode) {
+  mode = selectedMode;
+  document.getElementById("mode-screen").classList.add("hidden");
+  document.getElementById("game-screen").classList.remove("hidden");
+  startGame();
 }
 
 function startGame() {
@@ -152,4 +139,4 @@ function launchConfetti() {
   const canvas = document.getElementById('confetti-canvas');
   const confetti = window.confetti.create(canvas, { resize: true });
   confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
-}
+    }
