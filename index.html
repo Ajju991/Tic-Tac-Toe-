@@ -7,13 +7,22 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="game-container">
     <h1>Tic Tac Toe</h1>
-    <div id="board">
-      <!-- Cells will be dynamically generated -->
+    <div class="button-grid">
+      <!-- Buttons for the grid -->
+      <button class="grid-button" id="btn-0"></button>
+      <button class="grid-button" id="btn-1"></button>
+      <button class="grid-button" id="btn-2"></button>
+      <button class="grid-button" id="btn-3"></button>
+      <button class="grid-button" id="btn-4"></button>
+      <button class="grid-button" id="btn-5"></button>
+      <button class="grid-button" id="btn-6"></button>
+      <button class="grid-button" id="btn-7"></button>
+      <button class="grid-button" id="btn-8"></button>
     </div>
-    <p id="status"></p>
-    <button id="reset">Reset Game</button>
+    <p id="status">Player X's Turn</p>
+    <button id="reset-button">Reset</button>
   </div>
   <script src="script.js"></script>
 </body>
