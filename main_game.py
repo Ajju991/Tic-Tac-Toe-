@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import random
-import pygame
+import pygame  
 import os
 # Initialize pygame for sound
 pygame.init()
