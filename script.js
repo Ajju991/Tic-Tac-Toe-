@@ -13,14 +13,44 @@ const winCombos = [
   [0, 3, 6], [1, 4, 7], [2, 5, 8], // columns
   [0, 4, 8], [2, 4, 6],            // diagonals
 ];
+const soundToggle = document.getElementById("sound-toggle");
+
+function setMuteState(mute) {
+  bgMusic.muted = mute;
+  moveSound.muted = mute;
+  winSound.muted = mute;
+  drawSound.muted = mute;
+}
+
+soundToggle.addEventListener("click", () => {
+  const mute = !bgMusic.muted;
+  setMuteState(mute);
+  soundToggle.textContent = mute ? "Unmute Sound" : "Mute Sound";
+  soundToggle.classList.toggle("muted", mute);
+});
 
 const bgMusic = document.getElementById("bg-music");
 const moveSound = document.getElementById("move-sound");
 const winSound = document.getElementById("win-sound");
 const drawSound = document.getElementById("draw-sound");
 
-bgMusic.volume = 0.2; // low volume background
+bgMusic.volume = 0.2; // Adjust volume as needed
 
+// Example: Play move sound
+function playMoveSound() {
+  moveSound.currentTime = 0;
+  moveSound.play();
+}
+
+// Example: Play win sound
+function playWinSound() {
+  winSound.play();
+}
+
+// Example: Play draw sound
+function playDrawSound() {
+  drawSound.play();
+}
 function goToDeviceSelection() {
   document.getElementById("start-screen").classList.add("hidden");
   document.getElementById("device-screen").classList.remove("hidden");
