@@ -14,11 +14,12 @@ const winCombos = [
   [0, 4, 8], [2, 4, 6],            // diagonals
 ];
 
-const clickSound = document.getElementById("click-sound");
+const bgMusic = document.getElementById("bg-music");
+const moveSound = document.getElementById("move-sound");
 const winSound = document.getElementById("win-sound");
 const drawSound = document.getElementById("draw-sound");
-const turnIndicator = document.getElementById("turn-indicator");
-const boardContainer = document.getElementById("board");
+
+bgMusic.volume = 0.2; // low volume background
 
 function goToDeviceSelection() {
   document.getElementById("start-screen").classList.add("hidden");
