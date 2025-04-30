@@ -1,5 +1,20 @@
 /* style.css */
-
+#sound-toggle {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 8px 14px;
+  font-size: 14px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  z-index: 1000;
+}
+#sound-toggle.muted {
+  background-color: #dc3545;
+}
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
